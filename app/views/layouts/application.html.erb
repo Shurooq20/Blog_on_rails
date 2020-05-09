@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlogOnRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <nav class='navbar navbar-light bg-light mb-5'>
+      <span class='navbar-brand mb-0 h1'>Blog On Rails</span>
+      <ul style="float: right;">
+        <%= link_to 'Home', root_path, class: 'btn' %>
+        
+        <%= link_to 'New Post', new_post_path, class: 'btn'%>
+        
+        <%= link_to 'Create User', new_user_path, class: 'btn'%>
+    <div>
+     <% if user_signed_in? %>
+  
+        <%= link_to "Logout", sessions_path, method: :delete, class: 'btn btn-danger' %>
+        <%= current_user.first_name %> <%= current_user.last_name %>
+        <%= link_to 'Edit Password', edit_user_path, class: 'btn btn-primary'%>
+        <% else %>
+        <%= link_to "Log In", new_sessions_path, class: 'btn btn-success'%>
+
+      <% end %>
+    </div>
+      </ul>
+    </nav>
+
+
+    <% flash.each do |type, message| %>
+        <div class='bg-<%= type %> p-1 rounded mb-3 shadow-sm'>
+          <%= message %>
+        </div>
+      <% end %>
+
+    <%= yield %>
+  </body>
+</html>
