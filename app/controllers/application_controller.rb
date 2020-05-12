@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-    private
+  private
 
   
   def current_user

@@ -31,6 +31,7 @@
     <div class="form-group">
         <%= f.label :body, class: "d-none" %>
         <%= f.text_area :body, class: "form-control" %>
+
     </div>
     <%= f.submit 'Submit', class: 'btn btn-primary' %>
   </div>
@@ -49,7 +50,7 @@
     %>
     <ul class="list-group">
         <li class="list-group-item">
-            <p class='text-muted'><%= comment.user.first_name %> <%= comment.user.last_name %></p>
+      Commented <%= time_ago_in_words(comment.created_at) %> By <%= comment.user.first_name %> <%= comment.user.last_name %>
             <p><%= comment.body %></p>
              <% if can? :crud, comment %>
                     <%= link_to 'Delete',
